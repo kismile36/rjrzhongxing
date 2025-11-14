@@ -11,7 +11,7 @@ about:Label("脚本测试中")
 
 local about = UITab2:section("超级无敌脚本",true)
 
-about:Slider("缩放距离", "Slider",  128, 128, 1000, false, function(Value)
+about:Slider("缩放距离", "Slider",  128, 128, 10000, false, function(Value)
     game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = Value
 end)
 
