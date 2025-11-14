@@ -10,13 +10,12 @@ about:Label("kismile制作")
 about:Label("脚本测试中")
 
 local about = UITab2:section("超级无敌脚本",true)
-about:Slider("缩放焦距","FieldOfView",Workspace.CurrentCamera.FieldOfView,10,150,false,function(FOV)
-	spawn(function()
-		while task.wait() do
-			Workspace.CurrentCamera.FieldOfView = FOV
-		end
-	end)
+
+about:Slider("缩放距离", "Slider",  128, 128, 1000, false, function(Value)
+    game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = Value
 end)
+
+
 
 about:Button("飞行",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
