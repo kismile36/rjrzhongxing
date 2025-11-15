@@ -11,11 +11,30 @@ about:Label("脚本测试中")
 
 local about = UITab2:section("超级无敌脚本",true)
 
-about:Slider("缩放距离", "Slider",  128, 128, 10000, false, function(Value)
+about:Slider("视角缩放距离", "Slider",  128, 128, 10000, false, function(Value)
     game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = Value
 end)
 
-
+about:Textbox("快速跑步设置", "WalkSpeed", "输入速度值", function(Value)
+    local tspeed = tonumber(Value)
+    if tspeed then
+        local hb = game:GetService("RunService").Heartbeat
+        local tpwalking = true
+        local player = game:GetService("Players")
+        local lplr = player.LocalPlayer
+        local chr = lplr.Character
+        local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+        while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+          if hum.MoveDirection.Magnitude > 0 then
+            if tspeed then
+              chr:TranslateBy(hum.MoveDirection * tspeed)
+            else
+              chr:TranslateBy(hum.MoveDirection)
+            end
+          end
+        end
+    end
+end)
 
 about:Button("飞行",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
